@@ -36,13 +36,13 @@ describe('Conflogger tests', function() {
     expect(logger.fatal).to.be.a('function');
 
     logger.info('Should print this');
-    logger.fatal('Should not print this');
+    logger.fatal('Should print this');
 
     expect(original.info).to.be.a('function');
     expect(original.fatal).to.be.a('function');
 
     original.info('Should print this');
-    original.fatal('Should not print this');
+    original.fatal('Should print this');
   });
 
   it('should return noop logger if no logger passed', () => {

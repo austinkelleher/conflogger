@@ -11,8 +11,7 @@ npm install conflogger --save
 
 ## Usage
 
-Conflogger can take a provided logger and add methods that yield noops that
-do not exist
+Conflogger can take a provided logger and fill methods that do not exist
 
 ```js
 const conflogger = require('conflogger');
@@ -28,7 +27,7 @@ let logger = conflogger.configure(originalLogger);
 // Prints `Conflogger!`
 logger.info('Conflogger!');
 
-// Does not print anything
+// Prints `Error!`
 logger.error('Error!');
 ```
 

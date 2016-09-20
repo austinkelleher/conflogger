@@ -3,17 +3,17 @@
 function noop() {}
 
 const loggerMethodsMap = {
-  debug: console.log,
-  info: console.log,
-  success: console.log,
-  warn: console.warn,
-  error: console.error,
-  critical: console.error,
-  alert: console.log,
-  emergency: console.error,
-  notice: console.log,
-  verbose: console.log,
-  fatal: console.error
+  debug: console.log.bind(console),
+  info: console.log.bind(console),
+  success: console.log.bind(console),
+  warn: console.warn.bind(console),
+  error: console.error.bind(console),
+  critical: console.error.bind(console),
+  alert: console.log.bind(console),
+  emergency: console.error.bind(console),
+  notice: console.log.bind(console),
+  verbose: console.log.bind(console),
+  fatal: console.error.bind(console)
 };
 
 let loggerNoopsMap = {};
@@ -24,20 +24,15 @@ for (let method in loggerMethodsMap) {
 
 exports.configure = (logger) => {
   if (logger === true) {
-    logger = {};
-
-    for (let method in loggerMethodsMap) {
-      logger[method] = loggerMethodsMap[method].bind(console);
-    }
+    return loggerMethodsMap;
   } else if (logger) {
     for (let method in loggerMethodsMap) {
       if (!logger[method]) {
-        logger[method] = noop;
+        logger[method] = loggerMethodsMap[method];
       }
     }
+    return logger;
   } else {
-    logger = loggerNoopsMap;
+    return loggerNoopsMap;
   }
-
-  return logger;
 };
