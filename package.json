@@ -1,6 +1,6 @@
 {
   "name": "conflogger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Configure a logger",
   "main": "index.js",
   "scripts": {
