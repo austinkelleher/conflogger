@@ -10,14 +10,14 @@ chai.config.includeStack = true;
 
 describe('Conflogger tests', function() {
   it('should return configured logger if true passed', () => {
-    let logger = conflogger.configure(true);
+    const logger = conflogger.configure(true);
     expect(logger.info).to.be.a('function');
 
     logger.info('Should print this.');
   });
 
   it('should return noop logger if false passed', () => {
-    let logger = conflogger.configure(false);
+    const logger = conflogger.configure(false);
     expect(logger.info).to.be.a('function');
 
     logger.error('Should not print this.');
@@ -30,7 +30,7 @@ describe('Conflogger tests', function() {
       }
     };
 
-    let logger = conflogger.configure(original);
+    const logger = conflogger.configure(original);
 
     expect(logger.info).to.be.a('function');
     expect(logger.fatal).to.be.a('function');
@@ -46,10 +46,28 @@ describe('Conflogger tests', function() {
   });
 
   it('should return noop logger if no logger passed', () => {
-    let logger = conflogger.configure();
+    const logger = conflogger.configure();
     expect(logger.info).to.be.a('function');
 
     logger.info('Should not print this');
     logger.fatal('Should not print this');
+  });
+
+  it('should accept a log level and only print within the level', () => {
+    const logger = conflogger.configure(true, {
+      logLevel: conflogger.logLevels.DEBUG
+    });
+
+    if (!logger.isDebugEnabled()) {
+      throw new Error('DEBUG mode should be enabled.');
+    }
+
+    if (!logger.isInfoEnabled()) {
+      throw new Error('INFO mode should be enabled.');
+    }
+
+    if (logger.isTraceEnabled()) {
+      throw new Error('Trace should not be enabled.');
+    }
   });
 });
