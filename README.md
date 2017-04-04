@@ -1,6 +1,9 @@
 conflogger
 ===========
 
+[![Build Status](https://travis-ci.org/austinkelleher/conflogger.svg)](https://travis-ci.org/austinkelleher/conflogger)
+![NPM version](https://badge.fury.io/js/conflogger.svg)
+
 Small module for configuring a logger. Falls back to noops for methods that
 do not exist in the logger passed.
 

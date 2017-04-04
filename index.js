@@ -78,9 +78,7 @@ function _buildLogLevelMap(logger, logLevel) {
 exports.configure = (logger, options) => {
   options = options || {};
 
-  let {
-    logLevel
-  } = options;
+  let logLevel = options.logLevel;
 
   if (logger === true) {
     logger = Object.assign({}, loggerMethodsMap);
