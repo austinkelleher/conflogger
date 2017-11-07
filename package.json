@@ -4,7 +4,7 @@
   "description": "Configure a logger",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "ava"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,7 @@
     "url": "https://github.com/austinkelleher/conflogger/issues"
   },
   "homepage": "https://github.com/austinkelleher/conflogger#readme",
-  "dependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.0.2"
+  "devDependencies": {
+    "ava": "^0.23.0"
   }
 }
